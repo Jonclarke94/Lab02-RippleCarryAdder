@@ -1,0 +1,71 @@
+$date
+	Thu Feb 09 15:15:44 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module ripple_carry_adder $end
+$var wire 16 ! A [15:0] $end
+$var wire 16 " B [15:0] $end
+$var wire 1 # carryin $end
+$var parameter 32 $ NUMBITS $end
+$var reg 1 % carryout $end
+$var reg 16 & result [15:0] $end
+$upscope $end
+$scope module ripple_carry_adder_tb $end
+$var wire 1 ' carryout $end
+$var wire 8 ( result [7:0] $end
+$var parameter 32 ) NUMBITS $end
+$var reg 8 * A [7:0] $end
+$var reg 8 + B [7:0] $end
+$var reg 1 , clk $end
+$var reg 8 - expected_result [7:0] $end
+$var reg 1 . reset $end
+$var integer 32 / failedTests [31:0] $end
+$var integer 32 0 totalTests [31:0] $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1000 )
+b10000 $
+$end
+#0
+$dumpvars
+b0 0
+b0 /
+1.
+bx -
+0,
+bx +
+bx *
+bz (
+z'
+bx &
+x%
+z#
+bz "
+bz !
+$end
+#50000
+1,
+#100000
+0.
+0,
+#150000
+1,
+#160000
+b0 -
+b0 +
+b0 *
+b1 0
+#200000
+0,
+#250000
+1,
+#260000
+b1 /
+#270000
