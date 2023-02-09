@@ -1,10 +1,10 @@
 //=========================================================================
 // Name & Email must be EXACTLY as in Gradescope roster!
-// Name: 
-// Email: 
+// Name: Jonathan Clarke   
+// Email: jclar084@ucr.edu
 // 
-// Assignment name: 
-// Lab section: 
+// Assignment name: Lab 2
+// Lab section: 021
 // TA: 
 // 
 // I hereby certify that I have not received assistance on this assignment,
@@ -42,7 +42,13 @@ module ripple_carry_adder_tb;
     // -------------------------------------------------------
     // Instantiate the Unit Under Test (UUT)
     // -------------------------------------------------------
-
+        ripple_carry_adder #(.NUMBITS(NUMBITS)) uut (
+        .A(A),
+        .B(B),
+        .carryin(1'b0),
+        .result(result),
+        .carryout(carryout)
+    );
     // -------------------------------------------------------
     // Instantiate the 16-bit Unit Under Test (UUT)
     // -------------------------------------------------------
@@ -100,6 +106,20 @@ module ripple_carry_adder_tb;
         // ----------------------------------------
         // Add more test cases here 
         // ----------------------------------------
+                totalTests = totalTests + 1;
+    $write("\tTest Case 1.2:   5+  7 =  12, c_out = 0 ... ");
+    A = 16'h0005;
+    B = 16'h0007;
+    expected_result = 16'h000C;
+
+    #100; // Wait 
+    if (expected_result !== result || carryout !== 1'b0) begin
+        $write("failed\n");
+        failedTests = failedTests + 1;
+    end else begin
+        $write("passed\n");
+    end
+    #10; // Wait 
 
         // ----------------------------------------
         // Tests group for Increasing Number of Bits 
@@ -109,7 +129,35 @@ module ripple_carry_adder_tb;
         // ----------------------------------------
         // Add test cases here 
         // ----------------------------------------
+            totalTests = totalTests + 1;
+    $write("\tTest Case 2.1: 0x12345678 + 0x87654321 = 0x9999999A, c_out = 0 ... ");
+    A = 32'h12345678;
+    B = 32'h87654321;
+    expected_result = 32'h9999999A;
 
+    #100; // Wait 
+    if (expected_result !== result || carryout !== 1'b0) begin
+        $write("failed\n");
+        failedTests = failedTests + 1;
+    end else begin
+        $write("passed\n");
+    end
+    #10; // Wait 
+
+    totalTests = totalTests + 1;
+    $write("\tTest Case 2.2: 0x1234 + 0x5678 = 0x68AC, c_out = 0 ... ");
+    A = 16'h1234;
+    B = 16'h5678;
+    expected_result = 16'h68AC;
+
+    #100; // Wait 
+    if (expected_result !== result || carryout !== 1'b0) begin
+        $write("failed\n");
+        failedTests = failedTests + 1;
+    end else begin
+        $write("passed\n");
+    end
+    #10; // Wait 
         // -------------------------------------------------------
         // End testing
         // -------------------------------------------------------

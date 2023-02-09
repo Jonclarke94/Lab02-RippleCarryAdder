@@ -1,10 +1,10 @@
 //=========================================================================
 // Name & Email must be EXACTLY as in Gradescope roster!
-// Name: 
-// Email: 
+// Name: Jonathan Clarke
+// Email: jclar084@ucr.edu
 // 
-// Assignment name: 
-// Lab section: 
+// Assignment name: Lab02
+// Lab section: 021
 // TA: 
 // 
 // I hereby certify that I have not received assistance on this assignment,
@@ -27,5 +27,16 @@ module ripple_carry_adder # ( parameter NUMBITS = 16 ) (
     // ------------------------------
     // Insert your solution below
     // ------------------------------ 
+     reg carry;
+
+    always @* begin
+        carry = carryin;
+        result = 0;
+        for (int i=0; i<NUMBITS; i=i+1) begin
+            result[i] = A[i] ^ B[i] ^ carry;
+            carry = (A[i] & B[i]) | (carry & (A[i] ^ B[i]));
+        end
+        carryout = carry;
+    end
 
 endmodule
