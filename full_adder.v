@@ -4,7 +4,8 @@
 // SUCCESSFULL. 
 //
 //=========================================================================
-
+`include "slow_and.v"
+`include "slow_or.v"
 `timescale 1ns / 1ps
 
 //  Constant definitions 
