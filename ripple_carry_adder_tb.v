@@ -17,7 +17,7 @@
 `timescale 1ns / 1ps
 
 module ripple_carry_adder_tb;
-    parameter NUMBITS = 32;
+    parameter NUMBITS = 8;
 
     // Inputs
     reg clk;
@@ -29,10 +29,7 @@ module ripple_carry_adder_tb;
     wire [NUMBITS-1:0] result;
     reg [NUMBITS-1:0] expected_result;
     wire carryout;
-
-    ripple_carry_adder #(.NUMBITS(NUMBITS)) rpa (A, B, carryin, result, carryout); 
     
-
     // -------------------------------------------------------
     // Setup output file for possible debugging uses
     // -------------------------------------------------------
@@ -57,6 +54,8 @@ module ripple_carry_adder_tb;
     // -------------------------------------------------------
     // Instantiate the N-bit Unit Under Test (UUT)
     // -------------------------------------------------------
+
+    ripple_carry_adder #(.NUMBITS(NUMBITS)) rpa (A, B, carryin, result, carryout); 
     
     initial begin 
     
@@ -82,7 +81,7 @@ module ripple_carry_adder_tb;
         // ---------------------------------------------
         // Test Group for Addition Behavior Verification 
         // --------------------------------------------- 
-/*         $write("Test Group 1: Addition Behavior Verification ... \n");
+        $write("Test Group 1: Addition Behavior Verification ... \n");
 
         // Code necessary for each test case 
         totalTests = totalTests + 1;
@@ -119,7 +118,52 @@ if (expected_result !== result || carryout !== 1'b0) begin
 end else begin
     $write("passed\n");
 end
-#10; // Wait     */
+#10; // Wait    
+
+ totalTests = totalTests + 1;
+$write("\tTest Case 1.3:   255 + 1 = 256, c_out = 1 ... ");
+A = 8'hFF;
+B = 8'h01;
+expected_result = 8'h0;
+
+#100; // Wait 
+if (expected_result !== result || carryout !== 1'b1) begin
+    $write("failed\n");
+    failedTests = failedTests + 1;
+end else begin
+    $write("passed\n");
+end
+#10; // Wait    
+
+ totalTests = totalTests + 1;
+$write("\tTest Case 1.4:   123 + 46 = 169, c_out = 0 ... ");
+A = 8'h7B;
+B = 8'h2E;
+expected_result = 8'hA9;
+
+#100; // Wait 
+if (expected_result !== result || carryout !== 1'b0) begin
+    $write("failed\n");
+    failedTests = failedTests + 1;
+end else begin
+    $write("passed\n");
+end
+#10; // Wait    
+
+ totalTests = totalTests + 1;
+$write("\tTest Case 1.5:   123 + 146 = 13, c_out = 1 ... ");
+A = 8'h7B;
+B = 8'h92;
+expected_result = 8'hD;
+
+#100; // Wait 
+if (expected_result !== result || carryout !== 1'b1) begin
+    $write("failed\n");
+    failedTests = failedTests + 1;
+end else begin
+    $write("passed\n");
+end
+#10; // Wait    
 
         // ----------------------------------------
         // Tests group for Increasing Number of Bits 
@@ -189,7 +233,7 @@ end else begin
 end
 #10; // Wait */
 
-
+/* 
     totalTests = totalTests + 1;
     $write("\tTest Case 2.5: 0x12345678 + 0x87654321 = 0x9999999A, c_out = 0 ... ");
     A = 32'h12345678;
@@ -203,7 +247,7 @@ end
     end else begin
         $write("passed\n");
     end
-    #10; // Wait 
+    #10; // Wait  */
 
         // -------------------------------------------------------
         // End testing
