@@ -146,7 +146,7 @@ end
     #10; // Wait 
 
     totalTests = totalTests + 1;
-    $write("\tTest Case 2.3: 0x1234 + 0x5678 = 0x68AC, c_out = 0 ... ");
+    $write("\tTest Case 2.2: 0x1234 + 0x5678 = 0x68AC, c_out = 0 ... ");
     A = 16'h1234;
     B = 16'h5678;
     expected_result = 16'h68AC;
@@ -159,8 +159,40 @@ end
         $write("passed\n");
     end
     #10; // Wait 
+    
     totalTests = totalTests + 1;
-    $write("\tTest Case 2.2: 0x12345678 + 0x87654321 = 0x9999999A, c_out = 0 ... ");
+    $write("\tTest Case 2.3: 0x0001F400 + 0x00001000 = 0x00020400, c_out = 0 ... ");
+    A = 20'h0001F400;
+    B = 20'h00001000;
+    expected_result = 20'h00020400;
+
+    #100; // Wait
+    if (expected_result !== result || carryout !== 1'b0) begin
+        $write("failed\n");
+        failedTests = failedTests + 1;
+    end else begin
+    $write("passed\n");
+    end
+    #10; // Wait
+
+    totalTests = totalTests + 1;
+$write("\tTest Case 3.2: 0x00ABCDEF + 0x00345678 = 0x00E12367, c_out = 0 ... ");
+A = 24'h00ABCDEF;
+B = 24'h00345678;
+expected_result = 24'h00E12367;
+
+#100; // Wait
+if (expected_result !== result || carryout !== 1'b0) begin
+    $write("failed\n");
+    failedTests = failedTests + 1;
+end else begin
+    $write("passed\n");
+end
+#10; // Wait
+
+
+    totalTests = totalTests + 1;
+    $write("\tTest Case 2.5: 0x12345678 + 0x87654321 = 0x9999999A, c_out = 0 ... ");
     A = 32'h12345678;
     B = 32'h87654321;
     expected_result = 32'h9999999A;
