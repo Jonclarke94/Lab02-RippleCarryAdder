@@ -13,7 +13,7 @@
 //
 //=========================================================================
 
-`include "full_adder.v"
+//`include "full_adder.v"
 `timescale 1ns / 1ps
 
 //  Constant definitions 

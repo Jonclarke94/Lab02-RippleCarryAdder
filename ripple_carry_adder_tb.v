@@ -13,7 +13,7 @@
 //
 //=========================================================================
 
-`include "ripple_carry_adder.v"
+//`include "ripple_carry_adder.v"
 `timescale 1ns / 1ps
 
 module ripple_carry_adder_tb;
